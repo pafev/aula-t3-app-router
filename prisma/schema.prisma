@@ -51,6 +51,10 @@ model User {
     sessions      Session[]
 
     // ...other properties
+    telefone    Int?         @unique
+    loans       Loan[]
+    investments Investment[]
+    is_admin    Boolean      @default(false)
 }
 
 model VerificationToken {
@@ -59,4 +63,22 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Loan {
+    id     String  @id @default(cuid())
+    value  Int?
+    fee    Int?
+    tax    Int?
+    User   User?   @relation(fields: [userId], references: [id])
+    userId String?
+}
+
+model Investment {
+    id     String  @id @default(cuid())
+    value  Int?
+    fee    Int?
+    tax    Int?
+    User   User?   @relation(fields: [userId], references: [id])
+    userId String?
 }
