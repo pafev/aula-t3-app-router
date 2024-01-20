@@ -50,7 +50,7 @@ model User {
     accounts      Account[]
     sessions      Session[]
 
-    // ...other properties
+    // ...other peropertis
     telefone    Int?         @unique
     loans       Loan[]
     investments Investment[]
